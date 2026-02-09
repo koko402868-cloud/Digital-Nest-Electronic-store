@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Orders</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🧾 Orders List</h1>
+</header>
+
+<div style="text-align:center;">
+  <button id="clearBtn">Clear Orders</button>
+  <button id="exportBtn">Export JSON</button>
+</div>
+
+<table id="orderTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+const tableBody = document.querySelector("#orderTable tbody");
+
+function loadOrders() {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  tableBody.innerHTML = "";
+
+  orders.forEach(o => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${o.id}</td>
+      <td>${o.name}</td>
+      <td>${o.price}</td>
+      <td>${o.time}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+loadOrders();
+
+document.getElementById("clearBtn").onclick = () => {
+  if (confirm("Clear all orders?")) {
+    localStorage.removeItem("orders");
+    loadOrders();
+  }
+};
+
+document.getElementById("exportBtn").onclick = () => {
+  const orders = localStorage.getItem("orders") || "[]";
+  const blob = new Blob([orders], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "orders.json";
+  a.click();
+};
+</script>
+
+</body>
+</html>
