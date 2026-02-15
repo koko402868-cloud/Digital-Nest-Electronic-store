@@ -50,6 +50,7 @@ function addToCart(id) {
   if (product.stock === 0) return alert("Out of Stock");
 
   if (!cart[id]) cart[id] = 0;
+
   if (cart[id] < product.stock) {
     cart[id]++;
   } else {
@@ -117,10 +118,10 @@ function openOverlay(id) {
   document.getElementById("oImg").src = p.image;
   document.getElementById("oName").innerText = p.name;
   document.getElementById("oDesc").innerText = p.description;
-  document.getElementById("oPrice").innerText = "Price: " + p.price.toLocaleString() + " Ks";
+  document.getElementById("oPrice").innerText =
+    "Price: " + p.price.toLocaleString() + " Ks";
 
-  const stock = document.getElementById("oStock");
-  stock.innerText = "Stock: " + p.stock;
+  // Stock display removed
 }
 
 function closeOverlay() {
