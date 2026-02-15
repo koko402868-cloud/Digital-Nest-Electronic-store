@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Your Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🛒 Your Cart</h1>
+  <button onclick="window.location.href='index.html'">⬅ Back</button>
+</header>
+
+<div id="cartItems" style="padding:20px;"></div>
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const cartItemsDiv = document.getElementById("cartItems");
+
+  function renderCart() {
+    cartItemsDiv.innerHTML = "";
+
+    if (!cart || Object.keys(cart).length === 0) {
+      cartItemsDiv.innerHTML = "<h2>Your cart is empty</h2>";
+      return;
+    }
+
+    let totalPrice = 0;
+
+    for (let id in cart) {
+      const product = products.find(p => p.id == id);
+      if (!product) continue;
+
+      const qty = cart[id];
+      totalPrice += product.price * qty;
+
+      cartItemsDiv.innerHTML += `
+        <div class="card">
+          <img src="${product.image}" style="height:120px">
+          <h3>${product.name}</h3>
+          <p>${product.price.toLocaleString()} Ks</p>
+
+          <button onclick="changeQty(${id}, -1)">−</button>
+          ${qty}
+          <button onclick="changeQty(${id}, 1)">+</button>
+
+          <br><br>
+          <button onclick="removeItem(${id})"
+            style="background:red;color:white;">Remove</button>
+        </div>
+        <hr>
+      `;
+    }
+
+    cartItemsDiv.innerHTML += `
+      <h2>Total: ${totalPrice.toLocaleString()} Ks</h2>
+    `;
+  }
+
+  window.changeQty = function(id, change) {
+    cart[id] += change;
+    if (cart[id] <= 0) delete cart[id];
+    saveCart();
+    renderCart();
+  };
+
+  window.removeItem = function(id) {
+    delete cart[id];
+    saveCart();
+    renderCart();
+  };
+
+  renderCart();
+});
+</script>
+
+</body>
+</html>
