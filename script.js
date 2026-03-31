@@ -161,8 +161,15 @@ const products = [
     image: "images/9V-Battery-Clip-with-barrel-jack.png",
     description: "အသုံးပြုရလွယ်ကူပြီးတပ် ဆင်ရအဆင်ပြေစေမဲ့ Battery Clip with barrel jack လေးဖြစ်ပါတယ်ဗျာ့။Circuits တွေမှာ တပ်ဆင်ရလွယ်ကူပြီး အလွန်အသုံးဝင်စေနိုင်မဲ့ Battery Jack လေးဖြစ်ပါတယ်ဗျာ့။",
     stock: 5
+  },
+   {
+    id: 21,
+    name: "PIR Sensor Module",
+    price: 4500,
+    image: "images/Pir Sensor Module.png",
+    description: " PIR Sensor Module သည် လူသို့မဟုတ် အရာဝတ္ထုများ၏ လှုပ်ရှားမှုကို infrared အလင်းပြောင်းလဲမှုမှတစ်ဆင့် အလိုအလျောက်စမ်းသပ်သိရှိနိုင်ပါသည်။လှုပ်ရှားမှုရှိပါက signal output ပေးနိုင်ပြီး security system နှင့် automation project များတွင် အသုံးပြုရန် အဆင်ပြေပါသည်။တပ်ဆင်ရလွယ်ကူပြီး အားနည်းသော power ဖြင့်လည်း အလုပ်လုပ်နိုင်သော sensor တစ်ခုဖြစ်ပါသည်။",
+    stock: 5
   }
-  
 ];
 
 /* =====================
